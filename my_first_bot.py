@@ -3,17 +3,17 @@ from telebot import types
 import sqlite3
 
 
-bot = telebot.TeleBot('...', parse_mode=None) #instead of the ellipsis, enter the value of the bot token
+bot = telebot.TeleBot('...', parse_mode=None) #input token
 
-@bot.message_handler(commands=['start','назад'])
+@bot.message_handler(commands=['start'])
 def start_button_message(message):
     markup=types.ReplyKeyboardMarkup(resize_keyboard=True)   
-    item1=types.KeyboardButton('Python')
-    item2=types.KeyboardButton('Linux')
-    item3=types.KeyboardButton('SQL')
-    item4=types.KeyboardButton('Git')
-    item5=types.KeyboardButton('Сайты с задачами, тренажеры')
-    item6=types.KeyboardButton('Остальные полезные ресурсы')
+    item1=types.KeyboardButton('🐍Python')
+    item2=types.KeyboardButton('🐧Linux')
+    item3=types.KeyboardButton('🈪SQL')
+    item4=types.KeyboardButton('ᛦGit')
+    item5=types.KeyboardButton('🏋Сайты с задачами, тренажеры')
+    item6=types.KeyboardButton('✅Остальные полезные ресурсы')
     
     markup.add(item1, item2, item3)
     markup.add(item4, item5, item6)  
@@ -22,13 +22,29 @@ def start_button_message(message):
     
 
 @bot.message_handler(content_types=['text'])
-def start_button_message(message):
-    if message.text == 'Python':
+def text_hook(message):
+    
+    if message.text == '↩назад':
+        markup=types.ReplyKeyboardMarkup(resize_keyboard=True)   
+        item1=types.KeyboardButton('🐍Python')
+        item2=types.KeyboardButton('🐧Linux')
+        item3=types.KeyboardButton('🈪SQL')
+        item4=types.KeyboardButton('ᛦGit')
+        item5=types.KeyboardButton('🏋Сайты с задачами, тренажеры')
+        item6=types.KeyboardButton('✅Остальные полезные ресурсы')
+    
+    
+        markup.add(item1, item2, item3)
+        markup.add(item4, item5, item6)  
+    
+        bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
+
+    elif message.text == '🐍Python':
         markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1=types.KeyboardButton('Образовательные курсы. Python')
-        item2=types.KeyboardButton('Книги по Python')
+        item2=types.KeyboardButton('📖Книги по Python')
         item3=types.KeyboardButton('Python. Библиотеки, документация и т.д.')
-        item4=types.KeyboardButton('/назад')
+        item4=types.KeyboardButton('↩назад')
         
         markup.add(item1, item2)
         markup.add(item3, item4)
@@ -36,12 +52,12 @@ def start_button_message(message):
         bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
     
     
-    elif message.text == 'Linux':
+    elif message.text == '🐧Linux':
         markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1=types.KeyboardButton('Образовательные курсы. Linux')
-        item2=types.KeyboardButton('Книги по Linux')
+        item2=types.KeyboardButton('📖Книги по Linux')
         item3=types.KeyboardButton('Linux. Библиотеки, документация и т.д.')
-        item4=types.KeyboardButton('/назад')
+        item4=types.KeyboardButton('↩назад')
         
         markup.add(item1, item2)
         markup.add(item3, item4)
@@ -49,12 +65,12 @@ def start_button_message(message):
         bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
     
     
-    elif message.text == 'SQL':
+    elif message.text == '🈪SQL':
         markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1=types.KeyboardButton('Образовательные курсы. SQL')
-        item2=types.KeyboardButton('Книги по SQL')
+        item2=types.KeyboardButton('📖Книги по SQL')
         item3=types.KeyboardButton('SQL. Документация и т.д.')
-        item4=types.KeyboardButton('/назад')
+        item4=types.KeyboardButton('↩назад')
         
         markup.add(item1, item2)
         markup.add(item3, item4)
@@ -62,12 +78,12 @@ def start_button_message(message):
         bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
         
     
-    elif message.text == 'Git':
+    elif message.text == 'ᛦGit':
         markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1=types.KeyboardButton('Образовательные курсы. Git')
-        item2=types.KeyboardButton('Книги по Git')
+        item2=types.KeyboardButton('📖Книги по Git')
         item3=types.KeyboardButton('Git. Документация и т.д.')
-        item4=types.KeyboardButton('/назад')
+        item4=types.KeyboardButton('↩назад')
         
         markup.add(item1, item2)
         markup.add(item3, item4)
@@ -75,7 +91,7 @@ def start_button_message(message):
         bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
         
             
-    elif message.text == 'Сайты с задачами, тренажеры':
+    elif message.text == '🏋Сайты с задачами, тренажеры':
         markup = types.InlineKeyboardMarkup()
         markup.add(types.InlineKeyboardButton('codewars.com', url='https://www.codewars.com/dashboard'))
         markup.add(types.InlineKeyboardButton('Schoolw3.com', url='https://www.schoolsw3.com/python/exercise.php?filename=exercise_syntax1'))
@@ -88,7 +104,7 @@ def start_button_message(message):
     
 
     
-    elif message.text == 'Остальные полезные ресурсы':
+    elif message.text == '✅Остальные полезные ресурсы':
         markup = types.InlineKeyboardMarkup()
         markup.add(types.InlineKeyboardButton('НОУ ИНТУИТ', url='https://www.youtube.com/user/Intuitube/playlists'))
         markup.add(types.InlineKeyboardButton('Computer Science Center', url='https://www.youtube.com/c/CompscicenterRu/playlists'))
@@ -133,6 +149,9 @@ def start_button_message(message):
         markup.add(types.InlineKeyboardButton('Уроки SQL для начинающих. Гоша Дударь', url='https://www.youtube.com/watch?v=lapMmGGFS7k&list=PL0lO_mIqDDFVnLvR39VpEtphQ8bPJ-xR9'))
         markup.add(types.InlineKeyboardButton('Курс SQL Базы данных ORACLE. Prime Soft ', url='https://www.youtube.com/watch?v=Xktc0yHdQYw&list=PLv8UEsK35VB8ju8Vr9WeO71F7SCRofJis'))
         markup.add(types.InlineKeyboardButton('Базовый курс обучения SQL для начинающих. Максим Кухарь', url='https://www.youtube.com/watch?v=BYCU3XyKCzA&list=PLKl9v2TQvIkq4i_hZwZ1PmobxJSkIGwBf'))
+        markup.add(types.InlineKeyboardButton('Основы SQL и баз данных. Сберуниверситет', url='https://sberuniversity.ru/learning/courses/digital-skills/osnovy-sql-i-baz-dannykh9858/'))
+
+        
         
                 
         bot.send_message(message.chat.id,'Выберите...', reply_markup=markup)
@@ -149,7 +168,7 @@ def start_button_message(message):
         bot.send_message(message.chat.id,'Выберите...', reply_markup=markup)
         
         
-    elif message.text == 'Книги по Python':
+    elif message.text == '📖Книги по Python':
         markup = types.InlineKeyboardMarkup()
         markup.add(types.InlineKeyboardButton('(ru)Изучаем Питон. 4-е издание. Лутц', url='https://disk.yandex.ru/i/qaq4_ihgsAtG0Q'))
         markup.add(types.InlineKeyboardButton('(ru)Изучаем Питон. 5-е издание. Лутц', url='https://disk.yandex.ru/d/dExCTaz7ZxWyRg'))
@@ -161,7 +180,7 @@ def start_button_message(message):
         bot.send_message(message.chat.id,'Выберите...', reply_markup=markup)
         
     
-    elif message.text == 'Книги по Linux':
+    elif message.text == '📖Книги по Linux':
         markup = types.InlineKeyboardMarkup()
         markup.add(types.InlineKeyboardButton('(en)Linux Pocket Guide. Daniel Barrett', url='https://disk.yandex.ru/i/vU1AcTWgVDzZFA'))
         markup.add(types.InlineKeyboardButton('(ru)Введение в Линукс. Гаррельс', url='https://disk.yandex.ru/i/VykiM6PtI6Atug'))
@@ -169,7 +188,7 @@ def start_button_message(message):
         bot.send_message(message.chat.id,'Выберите...', reply_markup=markup)
         
     
-    elif message.text == 'Книги по SQL':
+    elif message.text == '📖Книги по SQL':
         markup = types.InlineKeyboardMarkup()
         markup.add(types.InlineKeyboardButton('(ru)SQL Полное руководство.3-е издание. Джеймс Грофф', url='https://disk.yandex.ru/i/Dh8aqDiMFEmUPg'))
         
@@ -177,7 +196,7 @@ def start_button_message(message):
         bot.send_message(message.chat.id,'Выберите...', reply_markup=markup)
         
     
-    elif message.text == 'Книги по Git':
+    elif message.text == '📖Книги по Git':
         markup = types.InlineKeyboardMarkup()
         markup.add(types.InlineKeyboardButton('(ru)Pro Git. Second edition. Scott Chacon', url='https://disk.yandex.ru/i/IoFLKrPJie6Vxg'))
         
