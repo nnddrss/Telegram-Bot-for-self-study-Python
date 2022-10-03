@@ -1,10 +1,10 @@
-import telebot
+import telebot                                   
 from telebot import types
 
 
 bot = telebot.TeleBot('', parse_mode=None)           #'' input bot token
 
-@bot.message_handler(commands=['start'])
+@bot.message_handler(commands=['start'])                 # processes the start command
 def start_button_message(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)   
     itemPython = types.KeyboardButton('🐍Python')
@@ -20,7 +20,7 @@ def start_button_message(message):
     bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
     
 
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(content_types=['text'])                    #handles all text values
 def text_hook(message):
     match message.text:
         
@@ -227,4 +227,4 @@ def text_hook(message):
             bot.send_message(message.chat.id,'Выберите...', reply_markup=markup)
     
 
-bot.polling(none_stop=True, interval=0)
+bot.polling(none_stop=True, interval=0)                         #the bot is always running and active
