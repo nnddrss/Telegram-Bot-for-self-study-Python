@@ -6,7 +6,7 @@ bot = telebot.TeleBot('', parse_mode=None)           #'' input bot token
 
 @bot.message_handler(commands=['start'])                 # processes the start command
 def start_button_message(message):
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)   
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)     #declare button type
     itemPython = types.KeyboardButton('🐍Python')
     itemLinux = types.KeyboardButton('🐧Linux')
     itemSQL = types.KeyboardButton('🈪SQL')
@@ -14,10 +14,10 @@ def start_button_message(message):
     itemTraining = types.KeyboardButton('🏋Сайты с задачами, тренажеры')
     itemUsefulResourse=types.KeyboardButton('✅Остальные полезные ресурсы')
     
-    markup.add(itemPython, itemLinux, itemSQL)
+    markup.add(itemPython, itemLinux, itemSQL)                    #adds buttons to one row
     markup.add(itemGit, itemTraining, itemUsefulResourse)  
     
-    bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
+    bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)      #response message to the start command   
     
 
 @bot.message_handler(content_types=['text'])                    #handles all text values
