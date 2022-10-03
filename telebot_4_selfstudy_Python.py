@@ -1,22 +1,21 @@
 import telebot
 from telebot import types
-import sqlite3
 
 
-bot = telebot.TeleBot('...', parse_mode=None) #input token
+bot = telebot.TeleBot('', parse_mode=None) # '' input bot token
 
 @bot.message_handler(commands=['start'])
 def start_button_message(message):
-    markup=types.ReplyKeyboardMarkup(resize_keyboard=True)   
-    item1=types.KeyboardButton('🐍Python')
-    item2=types.KeyboardButton('🐧Linux')
-    item3=types.KeyboardButton('🈪SQL')
-    item4=types.KeyboardButton('ᛦGit')
-    item5=types.KeyboardButton('🏋Сайты с задачами, тренажеры')
-    item6=types.KeyboardButton('✅Остальные полезные ресурсы')
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)   
+    itemPython = types.KeyboardButton('🐍Python')
+    itemLinux = types.KeyboardButton('🐧Linux')
+    itemSQL = types.KeyboardButton('🈪SQL')
+    itemGit = types.KeyboardButton('ᛦGit')
+    itemTraining = types.KeyboardButton('🏋Сайты с задачами, тренажеры')
+    itemUsefulResourse=types.KeyboardButton('✅Остальные полезные ресурсы')
     
-    markup.add(item1, item2, item3)
-    markup.add(item4, item5, item6)  
+    markup.add(itemPython, itemLinux, itemSQL)
+    markup.add(itemGit, itemTraining, itemUsefulResourse)  
     
     bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
     
@@ -25,68 +24,67 @@ def start_button_message(message):
 def text_hook(message):
     
     if message.text == '↩назад':
-        markup=types.ReplyKeyboardMarkup(resize_keyboard=True)   
-        item1=types.KeyboardButton('🐍Python')
-        item2=types.KeyboardButton('🐧Linux')
-        item3=types.KeyboardButton('🈪SQL')
-        item4=types.KeyboardButton('ᛦGit')
-        item5=types.KeyboardButton('🏋Сайты с задачами, тренажеры')
-        item6=types.KeyboardButton('✅Остальные полезные ресурсы')
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)   
+        itemPython = types.KeyboardButton('🐍Python')
+        itemLinux = types.KeyboardButton('🐧Linux')
+        itemSQL = types.KeyboardButton('🈪SQL')
+        itemGit = types.KeyboardButton('ᛦGit')
+        itemTraining = types.KeyboardButton('🏋Сайты с задачами, тренажеры')
+        itemUsefulResourse=types.KeyboardButton('✅Остальные полезные ресурсы')
     
-    
-        markup.add(item1, item2, item3)
-        markup.add(item4, item5, item6)  
+        markup.add(itemPython, itemLinux, itemSQL)
+        markup.add(itemGit, itemTraining, itemUsefulResourse)  
     
         bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
 
     elif message.text == '🐍Python':
-        markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
-        item1=types.KeyboardButton('Образовательные курсы. Python')
-        item2=types.KeyboardButton('📖Книги по Python')
-        item3=types.KeyboardButton('Python. Библиотеки, документация и т.д.')
-        item4=types.KeyboardButton('↩назад')
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        itemCourses = types.KeyboardButton('Образовательные курсы. Python')
+        itemBooks = types.KeyboardButton('📖Книги по Python')
+        itemDocs = types.KeyboardButton('Python. Библиотеки, документация и т.д.')
+        itemBack = types.KeyboardButton('↩назад')
         
-        markup.add(item1, item2)
-        markup.add(item3, item4)
+        markup.add(itemCourses, itemBooks)
+        markup.add(itemDocs, itemBack)
         
         bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
     
     
     elif message.text == '🐧Linux':
         markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
-        item1=types.KeyboardButton('Образовательные курсы. Linux')
-        item2=types.KeyboardButton('📖Книги по Linux')
-        item3=types.KeyboardButton('Linux. Библиотеки, документация и т.д.')
-        item4=types.KeyboardButton('↩назад')
+        itemCourses = types.KeyboardButton('Образовательные курсы. Linux')
+        itemBooks = types.KeyboardButton('📖Книги по Linux')
+        itemDocs = types.KeyboardButton('Linux. Библиотеки, документация и т.д.')
+        itemBack = types.KeyboardButton('↩назад')
         
-        markup.add(item1, item2)
-        markup.add(item3, item4)
+        markup.add(itemCourses, itemBooks)
+        markup.add(itemDocs, itemBack)
         
         bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
     
     
     elif message.text == '🈪SQL':
-        markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
-        item1=types.KeyboardButton('Образовательные курсы. SQL')
-        item2=types.KeyboardButton('📖Книги по SQL')
-        item3=types.KeyboardButton('SQL. Документация и т.д.')
-        item4=types.KeyboardButton('↩назад')
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        itemCourses = types.KeyboardButton('Образовательные курсы. SQL')
+        itemBooks = types.KeyboardButton('📖Книги по SQL')
+        itemDocs = types.KeyboardButton('SQL. Документация и т.д.')
+        itemBack = types.KeyboardButton('↩назад')
         
-        markup.add(item1, item2)
-        markup.add(item3, item4)
+        markup.add(itemCourses, itemBooks)
+        markup.add(itemDocs, itemBack)
         
         bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
         
     
     elif message.text == 'ᛦGit':
-        markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
-        item1=types.KeyboardButton('Образовательные курсы. Git')
-        item2=types.KeyboardButton('📖Книги по Git')
-        item3=types.KeyboardButton('Git. Документация и т.д.')
-        item4=types.KeyboardButton('↩назад')
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        itemCourses = types.KeyboardButton('Образовательные курсы. Git')
+        itemBooks = types.KeyboardButton('📖Книги по Git')
+        itemDocs = types.KeyboardButton('Git. Документация и т.д.')
+        itemBack = types.KeyboardButton('↩назад')
         
-        markup.add(item1, item2)
-        markup.add(item3, item4)
+        markup.add(itemCourses, itemBooks)
+        markup.add(itemDocs, itemBack)
         
         bot.send_message(message.chat.id,'Выберите нужное',reply_markup=markup)
         
@@ -128,7 +126,7 @@ def text_hook(message):
         markup.add(types.InlineKeyboardButton('Поколение Python": курс для начинающих. Stepic', url='https://stepik.org/course/58852/syllabus'))
         markup.add(types.InlineKeyboardButton('Уроки по Python для начинающих. PythonRu', url='https://pythonru.com/uroki/vvedenie-uroki-po-python-dlja-nachinajushhih'))
         markup.add(types.InlineKeyboardButton('Пишем ботов для Telegram на языке Python. MasterGroosha', url='https://mastergroosha.github.io/telegram-tutorial/'))
-        
+                
         bot.send_message(message.chat.id,'Выберите...', reply_markup=markup)
         
     
@@ -175,7 +173,8 @@ def text_hook(message):
         markup.add(types.InlineKeyboardButton('(ru)ООП в С. Lafore.R.', url='https://disk.yandex.ru/i/uaFm-17de3RGwQ'))
         markup.add(types.InlineKeyboardButton('(ru)Эффективное ООП. Лутц', url='https://disk.yandex.ru/i/BY_SjHPwYT5Sbg'))
         markup.add(types.InlineKeyboardButton('(ru)Программирование на Python для начинающих. Mike McGrath', url='https://disk.yandex.ru/i/0f6OH-jb06HKPw'))
-        # markup.add(types.InlineKeyboardButton('', url=''))
+        markup.add(types.InlineKeyboardButton('(ru)Грокаем алгоритмы. Адитья Бхаргава', url='https://disk.yandex.ru/i/P4ajzvdIzyjPCQ'))
+        
         
         bot.send_message(message.chat.id,'Выберите...', reply_markup=markup)
         
